@@ -86,7 +86,7 @@ user_team.set_sub_players()
 ```
 fantasy_team_renderer = FantasyTeamRenderer(user_team)
 ```
-8. Use the "render_squad" method in order to print the first squad players.
+8. Use the "render_first_squad" method in order to print the first squad players.
 ```
 fantasy_team_renderer.render_first_squad()
 ```
