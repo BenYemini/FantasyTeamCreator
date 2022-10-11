@@ -156,16 +156,16 @@ when initiated creates:
 
 #### "Create_team"
 This is the main method of this class, in which:  
-1. Each player receives a grade according to the grading system - [Read more here] (grade giver)
+1. Each player receives a grade according to the grading system - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L28)
 2. Each player is inserted to a MaxHeap, according to his position - [Read more here] (push maxheap)
-3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here] (compare players)
-4. Players are being picked to the UserTeam - [Read more here]. 
-5. Players are being appended to the relevant list in the UserTeam - [Read more here] (append UserTeam)
+3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png))
+4. Players are being picked to the UserTeam - [Read more here] (pick players). 
+5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80)
 6. Prints the left budget
 
 **Return** - UserFantasyTeam
 
-*Pay attention - While picking each player we check if the move is legal* - [Read more here] (legal move)
+*Pay attention - While picking each player we check if the move is legal* - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L115)
 
 ### UserFantasyTeam
 This class when initiated creates:
@@ -211,8 +211,7 @@ haven't learned it yet - just finished my first year :)*
 ## More Classes
 ### Player
 
-This class when initiated receives many parameters about a player and creates fields accordingly - [Read more here].
-(link to the init func in code)
+This class when initiated receives many parameters about a player and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Player.py#L7![image](https://user-images.githubusercontent.com/112508491/195097129-34620144-771a-4a60-bc4d-e9d672beab4e.png)).
 
 #### "get_player_grade"
 The main method of this class, in which players are being graded according to several parameters:
@@ -232,7 +231,7 @@ The main method of this class, in which players are being graded according to se
 * **Next Fixture** - player receives a bonus for the next fixture according to: home/ away, opponent team strength.  
 
 *The points received for each of the parameters have been calculated for a long time, and relay on statistics and
-logic - [Read more here]*
+logic.*
 
 *Of course, you can play with the numbers at the constants file as you'll like and get different outcomes!*
 
@@ -240,8 +239,7 @@ logic - [Read more here]*
 *object is created - [Read more here]*
 
 ### Team
-This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here]
-(link to the init func in code)
+This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Team.py#L2![image](https://user-images.githubusercontent.com/112508491/195097293-861646e1-3ce9-4c56-ba8b-477f44c89a3f.png))
 
 #### "set_picked_player"
 This method is initiated when a player is added to **UserFantasyTeam**,
