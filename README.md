@@ -151,7 +151,7 @@ G.Martinelli Silva , total grade is: 13.19
 when initiated creates:
 * List[**Team**] - for teams
 * List[**Player**] - for players
-* Dictionary containing 4 **MaxHeap** (for each position on the field) - for after the players grade
+* Dictionary containing 4 **MaxHeap** - one for each position
 * **UserFantasyTeam**
 
 #### "Create_team"
