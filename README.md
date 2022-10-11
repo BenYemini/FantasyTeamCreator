@@ -29,12 +29,12 @@ The project is built from 3 main classes:
 * **FantasyTeamRenderer** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L189![image](https://user-images.githubusercontent.com/112508491/195093227-77e50f58-47c5-44ba-9da4-c13c4f0ab1c9.png))
 
 And 4 more classes:
-* **Player** - [Read more here]
-* **Team** - [Read more here]
-* **MaxHeap** - [Read more here]
-* **FixturesData** - [Read more here]
+* **Player** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L210)
+* **Team** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L240)
+* **MaxHeap** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L251)
+* **FixturesData** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L264)
 
-**I highly recommend reading about the classes before you run the program - [Read more here].**
+**I highly recommend reading about the classes before you run the program - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L148).**
 
 
 ## Install
