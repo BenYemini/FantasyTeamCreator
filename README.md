@@ -156,16 +156,16 @@ when initiated creates:
 
 #### "Create_team"
 This is the main method of this class, in which:  
-1. Each player receives a grade according to the grading system - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L28)
-2. Each player is inserted to a MaxHeap, according to his position - [Read more here] (push maxheap)
-3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png))
-4. Players are being picked to the UserTeam - [Read more here] (pick players). 
-5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80)
+1. Each player receives a grade according to the grading system - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L28).
+2. Each player is inserted to a MaxHeap, according to his position - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/MaxHeap.py#L12).
+3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png)).
+4. Players are being picked to the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/FantasyTeamCreator.py#L37). 
+5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80).
 6. Prints the left budget
 
 **Return** - UserFantasyTeam
 
-*Pay attention - While picking each player we check if the move is legal* - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L115)
+*Pay attention - While picking each player we check if the move is legal* - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L115).
 
 ### UserFantasyTeam
 This class when initiated creates:
@@ -181,7 +181,7 @@ This class when initiated creates:
 
 #### "set_first_squad"
 
-Pick's the 11 top graded players from the lists to be in the first squad -*under FPL limitations* - [Read more here](https://fantasy.premierleague.com/help/rules)  
+Pick's the 11 top graded players from the lists to be in the first squad -*under FPL limitations* - [Read more here](https://fantasy.premierleague.com/help/rules).  
 Call's the "set_captains" method, to set the team's first and second captain.
 
 #### "set_sub_players"
@@ -239,7 +239,7 @@ logic.*
 *object is created - [Read more here]*
 
 ### Team
-This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Team.py#L2![image](https://user-images.githubusercontent.com/112508491/195097293-861646e1-3ce9-4c56-ba8b-477f44c89a3f.png))
+This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Team.py#L2![image](https://user-images.githubusercontent.com/112508491/195097293-861646e1-3ce9-4c56-ba8b-477f44c89a3f.png)).
 
 #### "set_picked_player"
 This method is initiated when a player is added to **UserFantasyTeam**,
@@ -259,7 +259,7 @@ This class when initiated creates two fields:
 * int - holds the size of the heap.
 
 I made several modifications from the class that was 
-built by GeekForGeeks, you can read about it at their website! - [Read more here](https://www.geeksforgeeks.org/max-heap-in-python/)
+built by GeekForGeeks, you can read about it at their website! - [Read more here](https://www.geeksforgeeks.org/max-heap-in-python/).
 
 ### FixtureData
 This class when initiated creates many fields that holds data about: 
