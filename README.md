@@ -159,11 +159,13 @@ This is the main method of this class, in which:
 1. Each player receives a grade according to the grading system - [Read more here] (grade giver)
 2. Each player is inserted to a MaxHeap, according to his position - [Read more here] (push maxheap)
 3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here] (compare players)
-4. Players are being picked to the UserTeam, under the limitations of FPL - [Read more here] (legal move)
+4. Players are being picked to the UserTeam - [Read more here]. 
 5. Players are being appended to the relevant list in the UserTeam - [Read more here] (append UserTeam)
 6. Prints the left budget
 
 **Return** - UserFantasyTeam
+
+*Pay attention - While picking each player we check if the move is legal* - [Read more here] (legal move)
 
 ### UserFantasyTeam
 This class when initiated creates:
