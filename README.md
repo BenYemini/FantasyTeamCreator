@@ -145,7 +145,7 @@ E.Haaland , total grade is: 11.96
 Second Team Captain:
 G.Martinelli Silva , total grade is: 13.19
 ````
-**We can see that the left budget is very small and our team is pretty good!!**
+**We can see that the left budget is very small and our team is pretty good!!**. 
 (This team was built just before Game-Week 11)  
 ## Main Classes
 ### FantasyTeamCreator
