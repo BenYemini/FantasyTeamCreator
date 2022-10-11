@@ -22,6 +22,7 @@ into the code - [Read more here](https://www.educative.io/blog/object-oriented-p
 **If you aren't familiar with the "Fantasy Premier League" (FPL)** - 
 [Read More Here](https://www.fourfourtwo.com/features/fpl-what-is-fantasy-football-and-how-does-it-work).
 
+## Project's Structure
 The project is built from 3 main classes:
 * **FantasyTeamCreator** - [Read more here] 
 * **UserFantasyTeam** - [Read more here]
