@@ -165,7 +165,7 @@ This is the main method of this class, in which:
 5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80).
 6. Prints the left budget
 
-**Return** - UserFantasyTeam
+**Return** - **UserFantasyTeam**
 
 *Pay attention - While picking each player we check if the move is legal* - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L115).
 
@@ -176,7 +176,7 @@ This class when initiated creates:
 * List[**Player**] - for Midfielders
 * List[**Player**] - for Forwards
 * Dictionary containing 4 List[**Player**] (one for each position) - for first squad
-* List[Player] - for sub players
+* List[**Player**] - for sub players
 * **Player** - for Team Captain selection
 * **Player** - for Team Second Captain selection
 
@@ -257,7 +257,7 @@ the comparison between them, because it allows:
 * DeleteMax - O(log(n)).
 
 This class when initiated creates two fields:
-* List[Player] - holds Player objects in a heap structure.
+* List[**Player**] - holds Player objects in a heap structure.
 * int - holds the size of the heap.
 
 I made several modifications from the class that was 
