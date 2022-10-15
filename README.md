@@ -2,24 +2,24 @@
 
 ## Introduction
 
-⚽ **"Fantasy Team Creator" is a python Object-Oriented project that enables users to create a soccer fantasy team.**
+- ⚽ **"Fantasy Team Creator" is a python Object-Oriented project that enables users to create a soccer fantasy team.**
 
-🥇 The players are chosen to the team according to the grades they receive from the grading system that
+- 🥇 The players are chosen to the team according to the grades they receive from the grading system that
 I have developed (from my experience in fantasy and soccer).
 
-🏴󠁧󠁢󠁥󠁮󠁧󠁿 I decided to build the Fantasy Team Creator based on the Premier League fantasy, because it's the biggest
+- 🏴󠁧󠁢󠁥󠁮󠁧󠁿 I decided to build the Fantasy Team Creator based on the Premier League fantasy, because it's the biggest
 and most relevant of them all.
 
-🌍 **I encourage you to use the logic that was used by me during this project, and the actual code,
+- 🌍 **I encourage you to use the logic that was used by me during this project, and the actual code,
 in order to build a team creator in other fantasy leagues!**
 
-🌲 **If you aren't familiar with the idea of binary trees and Max-Heaps**, I recommend
+- 🌲 **If you aren't familiar with the idea of binary trees and Max-Heaps**, I recommend
 reading about it before diving into the code - [Read More Here](https://www.geeksforgeeks.org/max-heap-in-python/).
 
-🗂️ **If you aren't familiar with the idea of Object-Oriented Programming**, I recommend reading about it before diving
+- 🗂️ **If you aren't familiar with the idea of Object-Oriented Programming**, I recommend reading about it before diving
 into the code - [Read more here](https://www.educative.io/blog/object-oriented-programming)
 
-😧 **If you aren't familiar with the "Fantasy Premier League" (FPL)** - 
+- 😧 **If you aren't familiar with the "Fantasy Premier League" (FPL)** - 
 [Read More Here](https://www.fourfourtwo.com/features/fpl-what-is-fantasy-football-and-how-does-it-work).
 
 ## Project's Structure
