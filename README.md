@@ -238,7 +238,7 @@ logic.*
 *Of course, you can play with the numbers at the constants file as you'll like and get different outcomes!*
 
 *during the* Activity Check *and the Next Fixture methods a* **FixturesData**
-*object is created - [Read more here]*(https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L266)
+*object is created - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L266)*
 
 ### Team
 This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Team.py#L2![image](https://user-images.githubusercontent.com/112508491/195097293-861646e1-3ce9-4c56-ba8b-477f44c89a3f.png)).
