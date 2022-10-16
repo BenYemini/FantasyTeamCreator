@@ -146,7 +146,7 @@ Second Team Captain:
 G.Martinelli Silva , total grade is: 13.19
 ````
 **We can see that the left budget is very small and our team is pretty good!!**.   
-(This team was built just before Game-Week 11)  
+(This team was built just before Game-Week 11 - and made 51 Round Points!).  
 ## Main Classes
 ### FantasyTeamCreator
 
