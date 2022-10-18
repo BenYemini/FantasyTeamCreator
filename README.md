@@ -2,38 +2,39 @@
 
 ## Introduction
 
-**"Fantasy Team Creator" is a python Object-Oriented project that enables users to create a soccer fantasy team.**
+- ⚽ **"Fantasy Team Creator" is a python Object-Oriented project that enables users to create a soccer fantasy team.**
 
-The players are chosen to the team according to the grades they receive from the grading system that
+- 🥇 The players are chosen to the team according to the grades they receive from the grading system that
 I have developed (from my experience in fantasy and soccer).
 
-I decided to build the Fantasy Team Creator based on the Premier League fantasy, because it's the biggest
+- 🏴󠁧󠁢󠁥󠁮󠁧󠁿 I decided to build the Fantasy Team Creator based on the Premier League fantasy, because it's the biggest
 and most relevant of them all.
 
-**I encourage you to use the logic that was used by me during this project, and the actual code,
+- 🌍 **I encourage you to use the logic that was used by me during this project, and the actual code,
 in order to build a team creator in other fantasy leagues!**
 
-**If you aren't familiar with the idea of binary trees and Max-Heaps**, I recommend
+- 🌲 **If you aren't familiar with the idea of binary trees and Max-Heaps**, I recommend
 reading about it before diving into the code - [Read More Here](https://www.geeksforgeeks.org/max-heap-in-python/).
 
-**If you aren't familiar with the idea of Object-Oriented Programming**, I recommend reading about it before diving
+- 🗂️ **If you aren't familiar with the idea of Object-Oriented Programming**, I recommend reading about it before diving
 into the code - [Read more here](https://www.educative.io/blog/object-oriented-programming)
 
-**If you aren't familiar with the "Fantasy Premier League" (FPL)** - 
+- 😧 **If you aren't familiar with the "Fantasy Premier League" (FPL)** - 
 [Read More Here](https://www.fourfourtwo.com/features/fpl-what-is-fantasy-football-and-how-does-it-work).
 
+## Project's Structure
 The project is built from 3 main classes:
-* **FantasyTeamCreator** - [Read more here] 
-* **UserFantasyTeam** - [Read more here]
-* **FantasyTeamRenderer** - [Read more here]
+* **FantasyTeamCreator** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L149) 
+* **UserFantasyTeam** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L168)
+* **FantasyTeamRenderer** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L189![image](https://user-images.githubusercontent.com/112508491/195093227-77e50f58-47c5-44ba-9da4-c13c4f0ab1c9.png))
 
 And 4 more classes:
-* **Player** - [Read more here]
-* **Team** - [Read more here]
-* **MaxHeap** - [Read more here]
-* **FixturesData** - [Read more here]
+* **Player** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L210)
+* **Team** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L240)
+* **MaxHeap** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L251)
+* **FixturesData** - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L264)
 
-**I highly recommend reading about the classes before you run the program - [Read more here].**
+**I highly recommend reading about the classes before you run the program - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L148).**
 
 
 ## Install
@@ -85,7 +86,7 @@ user_team.set_sub_players()
 ```
 fantasy_team_renderer = FantasyTeamRenderer(user_team)
 ```
-8. Use the "render_squad" method in order to print the first squad players.
+8. Use the "render_first_squad" method in order to print the first squad players.
 ```
 fantasy_team_renderer.render_first_squad()
 ```
@@ -144,25 +145,29 @@ E.Haaland , total grade is: 11.96
 Second Team Captain:
 G.Martinelli Silva , total grade is: 13.19
 ````
+**We can see that the left budget is very small and our team is pretty good!!**.   
+(This team was built just before Game-Week 11 - and made 51 Round Points!).  
 ## Main Classes
 ### FantasyTeamCreator
 
 when initiated creates:
 * List[**Team**] - for teams
 * List[**Player**] - for players
-* Dictionary containing 4 **MaxHeap** (for each position on the field) - for after the players grade
+* Dictionary containing 4 **MaxHeap** - one for each position
 * **UserFantasyTeam**
 
 #### "Create_team"
 This is the main method of this class, in which:  
-1. Each player receives a grade according to the grading system - [Read more here] (grade giver)
-2. Each player is inserted to a MaxHeap, according to his position - [Read more here] (push maxheap)
-3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here] (compare players)
-4. Players are being picked to the UserTeam, under the limitations of FPL - [Read more here] (legal move)
-5. Players are being appended to the relevant list in the UserTeam - [Read more here] (append UserTeam)
+1. Each player receives a grade according to the grading system - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L28).
+2. Each player is inserted to a MaxHeap, according to his position - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/MaxHeap.py#L12).
+3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png)).
+4. Players are being picked to the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/FantasyTeamCreator.py#L37). 
+5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80).
 6. Prints the left budget
 
-**Return** - UserFantasyTeam
+**Return** - **UserFantasyTeam**
+
+*Pay attention - While picking each player we check if the move is legal* - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L115).
 
 ### UserFantasyTeam
 This class when initiated creates:
@@ -171,14 +176,14 @@ This class when initiated creates:
 * List[**Player**] - for Midfielders
 * List[**Player**] - for Forwards
 * Dictionary containing 4 List[**Player**] (one for each position) - for first squad
-* List[Player] - for sub players
+* List[**Player**] - for sub players
 * **Player** - for Team Captain selection
 * **Player** - for Team Second Captain selection
 
 
 #### "set_first_squad"
 
-Pick's the 11 top graded players from the lists to be in the first squad -*under FPL limitations* - [Read more here](https://fantasy.premierleague.com/help/rules)  
+Pick's the 11 top graded players from the lists to be in the first squad -*under FPL limitations* - [Read more here](https://fantasy.premierleague.com/help/rules).  
 Call's the "set_captains" method, to set the team's first and second captain.
 
 #### "set_sub_players"
@@ -208,8 +213,7 @@ haven't learned it yet - just finished my first year :)*
 ## More Classes
 ### Player
 
-This class when initiated receives many parameters about a player and creates fields accordingly - [Read more here].
-(link to the init func in code)
+This class when initiated receives many parameters about a player and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Player.py#L7![image](https://user-images.githubusercontent.com/112508491/195097129-34620144-771a-4a60-bc4d-e9d672beab4e.png)).
 
 #### "get_player_grade"
 The main method of this class, in which players are being graded according to several parameters:
@@ -229,16 +233,15 @@ The main method of this class, in which players are being graded according to se
 * **Next Fixture** - player receives a bonus for the next fixture according to: home/ away, opponent team strength.  
 
 *The points received for each of the parameters have been calculated for a long time, and relay on statistics and
-logic - [Read more here]*
+logic.*
 
 *Of course, you can play with the numbers at the constants file as you'll like and get different outcomes!*
 
 *during the* Activity Check *and the Next Fixture methods a* **FixturesData**
-*object is created - [Read more here]*
+*object is created - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L264)*
 
 ### Team
-This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here]
-(link to the init func in code)
+This class when initiated receives many parameters about a team and creates fields accordingly - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/Team.py#L2![image](https://user-images.githubusercontent.com/112508491/195097293-861646e1-3ce9-4c56-ba8b-477f44c89a3f.png)).
 
 #### "set_picked_player"
 This method is initiated when a player is added to **UserFantasyTeam**,
@@ -254,11 +257,11 @@ the comparison between them, because it allows:
 * DeleteMax - O(log(n)).
 
 This class when initiated creates two fields:
-* List[Player] - holds Player objects in a heap structure.
+* List[**Player**] - holds Player objects in a heap structure.
 * int - holds the size of the heap.
 
 I made several modifications from the class that was 
-built by GeekForGeeks, you can read about it at their website! - [Read more here](https://www.geeksforgeeks.org/max-heap-in-python/)
+built by GeekForGeeks, you can read about it at their website! - [Read more here](https://www.geeksforgeeks.org/max-heap-in-python/).
 
 ### FixtureData
 This class when initiated creates many fields that holds data about: 
