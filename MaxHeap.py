@@ -28,6 +28,15 @@ class MaxHeap:
             # Calling the top_down function to ensure that the heap is still in order
             _top_down(self._heap, 0)
 
+    def delete_player(self, player):
+        index = self._heap.index(player)
+        _swap(self._heap, self.size - 1, index)
+        self._heap.pop()
+        self.size -= 1
+
+        # Calling the top_down function to ensure that the heap is still in order
+        _top_down(self._heap, index)
+
     # Returns the first element (The root).
     def peek(self) -> Player:
         return self._heap[0]

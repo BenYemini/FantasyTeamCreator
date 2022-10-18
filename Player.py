@@ -74,7 +74,7 @@ class Player:
         if self.selected_by_percent / 100 > 0.5:
             total_grade += SELECTED_BY_MAJORITY_BONUS
         total_grade += self.penalties_corners_bonus()
-        total_grade += team_strength_grade(team_info.get_strength())
+        total_grade += team_strength_grade(team_info)
 
         if total_grade > MIN_TOTAL_GRADE_NEEDED_TO_PASS or (self.get_position() == "FWD" and
                                                             total_grade > MIN_TOTAL_GRADE_NEEDED_TO_PASS_FOR_FWD):
@@ -82,6 +82,7 @@ class Player:
             if not player_fixtures_data.is_active():  # Player is not active, and hence choosing him is a risk.
                 return 0
             else:
+                self.set_player_active()
                 total_grade += player_fixtures_data.get_next_fixture_bonus()
         return total_grade
 
@@ -126,6 +127,12 @@ class Player:
         if self.status != 'a':
             return False
 
+    def is_active(self):
+        return self.active
+
+    def set_player_active(self):
+        self.active = True
+
     # Print's the players name and total grade.
     def print(self):
         print(self.get_short_name() + " , total grade is: " + "{:.2f}".format(self.total_grade))
@@ -134,12 +141,14 @@ class Player:
 # The strength stands for the team level, in scale of 1-5.
 # If the quality of the team is 4-5, then the probability for points is greater, therefore the player receives bonus
 # If the quality of the team is 1-2, then the probability for points is smaller.
-def team_strength_grade(strength):
-    if strength == 5:
+def team_strength_grade(team_info):
+    if team_info.get_name() == "Chelsea":  # Chelsea is a TOP STRENGTH team even though it's not in the api.
         return TOP_STRENGTH_TEAM_BONUS
-    elif strength == 4:
+    elif team_info.get_strength() == 5:
+        return TOP_STRENGTH_TEAM_BONUS
+    elif team_info.get_strength() == 4:
         return GOOD_STRENGTH_TEAM_BONUS
-    elif strength == 3:
+    elif team_info.get_strength() == 3:
         return AVERAGE_STRENGTH_TEAM_BONUS
     else:
         return BAD_STRENGTH_TEAM_DEDUCTION

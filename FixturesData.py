@@ -9,6 +9,7 @@ class FixturesData:
         self.next_fixture = json_fixtures_data['fixtures'][0]  # A data about next fixture.
         self.next_fixture_opponent_strength = json_fixtures_data['fixtures'][0]['difficulty']
         self.next_fixture_home = json_fixtures_data['fixtures'][0]['is_home']  # True if the next fixture is at home.
+        self.next_fixture_opponnent_id = json_fixtures_data['fixtures'][0]['id']
         self.active = False  # If the player is considered active, then this field will be True.
         self.next_fixture_bonus = 0  # The next fixture bonus grade.
         self.set_next_fixture_bonus()
@@ -35,7 +36,9 @@ class FixturesData:
         else:
             self.next_fixture_bonus -= AWAY_GAME_DEDUCTION
 
-        if self.next_fixture_opponent_strength == 5:
+        if self.next_fixture_opponnent_id == 6:  # Chelsea is a TOP STRENGTH team even though it's not in the api.
+            self.next_fixture_bonus -= TOP_STRENGTH_TEAM_BONUS
+        elif self.next_fixture_opponent_strength == 5:
             self.next_fixture_bonus -= TOP_STRENGTH_TEAM_BONUS  # Pay attention to the minus!
         elif self.next_fixture_opponent_strength == 4:
             self.next_fixture_bonus -= GOOD_STRENGTH_TEAM_BONUS  # Pay attention to the minus!

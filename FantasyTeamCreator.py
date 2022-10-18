@@ -39,17 +39,24 @@ class FantasyTeamCreator:
         if current_num_of_players_in_user_team == TOTAL_NUM_OF_PLAYERS_IN_FINAL_TEAM:  # Recursion Stopping condition.
             print("\n" + "The left budget is: " + "{:.1f}".format(budget))
             return
+        elif current_num_of_players_in_user_team < 2:   # Picking superstars - most points per game players.
+            if current_num_of_players_in_user_team == 0:
+                self.players_pool.sort(key=points_per_game_key_func)
+            winner = self.players_pool.pop()
+            self.players[winner.get_position()].delete_player(winner)
+            if not winner.is_active():
+                self.pick_players_for_user_team(budget)
         else:
             winner = compare_players(self.players, self.user_team)
-            if legal_move(winner, self.user_team, budget, self.teams):  # Legal move according to FPL limitations.
-                winners_position = winner.get_position()
-                winners_team = winner.get_team()
-                self.user_team.append(winner, winners_position)  # Add the player to the team.
-                self.teams[winners_team].set_picked_player()  # Set the winner's team counter, notice the indexes.
-                budget -= winner.get_price()
-                self.pick_players_for_user_team(budget)
-            else:  # The move is illegal... the player will not be considered in the comparison anymore.
-                self.pick_players_for_user_team(budget)
+        if legal_move(winner, self.user_team, budget, self.teams):  # Legal move according to FPL limitations.
+            winners_position = winner.get_position()
+            winners_team = winner.get_team()
+            self.user_team.append(winner, winners_position)  # Add the player to the team.
+            self.teams[winners_team].set_picked_player()  # Set the winner's team counter, notice the indexes.
+            budget -= winner.get_price()
+            self.pick_players_for_user_team(budget)
+        else:  # The move is illegal... the player will not be considered in the comparison anymore.
+            self.pick_players_for_user_team(budget)
 
 
 # This function creates Player object for each player in the json file and adds him to the players field.
@@ -157,7 +164,7 @@ def budget_ratio_approval(winner, user_team, budget):
     else:
         after_purchase_players_to_go = TOTAL_NUM_OF_PLAYERS_IN_FINAL_TEAM - (current_players_count + 1)
         if current_players_count >= NUM_OF_FIRST_SQUAD_PLAYERS:  # Choosing sub player.
-            ratio = after_purchase_budget / after_purchase_players_to_go    # Budget for each future sub player.
+            ratio = after_purchase_budget / after_purchase_players_to_go  # Budget for each future sub player.
             return ratio > MIN_AMOUNT_OF_BUDGET_FOR_EACH_SUB_PLAYER
         elif current_players_count == NUM_OF_FIRST_SQUAD_PLAYERS - 1:  # Choosing the last first-squad player.
             return budget >= MIN_BUDGET_FOR_SUB_PLAYERS_SELECTION
@@ -179,3 +186,7 @@ def push_to_heap(self, player):
 
     else:
         self.players['FWD'].push(player)
+
+
+def points_per_game_key_func(element):
+    return element.get_points_per_game()
