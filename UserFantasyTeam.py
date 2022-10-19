@@ -23,13 +23,15 @@ class UserFantasyTeam:
         self.sub_players = []
         self.budget = float
 
-    # Set the team's budget to the budget given by the user.
+    # Set the team's budget to the primary budget given by the user.
     def set_budget(self, budget):
         self.budget = budget
 
+    # Returns the current budget.
     def get_budget(self):
         return self.budget
 
+    # Sets the budget after purchasing a player to the team.
     def set_budget_after_player_purchase(self, player_price):
         self.budget -= player_price
 
@@ -54,38 +56,26 @@ class UserFantasyTeam:
         return len(self.forwards)
 
     def set_captains(self, player):
-        self.set_first_captain(player)
-        if self.first_captain != player:
+        if self.num_of_players == 1:
+            self.set_first_captain(player)
+        elif self.num_of_players == 2:
             self.set_second_captain(player)
+
+    # Sets the given player to be the team's first captain.
+    def set_first_captain(self, player):
+        self.first_captain = player
 
     # Returns the team's captain.
     def get_first_captain(self):
         return self.first_captain
 
-    # If the given player's points per game average is greater than the current first captain,
-    # it sets him to be the first captain If not, it checks with the second captain.
-    def set_first_captain(self, player):
-        if self.num_of_players_in_first_squad == 0:
-            self.first_captain = player
-        else:
-            if self.first_captain.get_points_per_game() < player.get_points_per_game():
-                self.second_captain = self.first_captain
-                self.first_captain = player
-            else:
-                self.set_second_captain(player)
+    # Sets the given player to be the team's second captain.
+    def set_second_captain(self, player):
+        self.second_captain = player
 
     # Returns the team's second captain.
     def get_second_captain(self):
         return self.second_captain
-
-    # If the given player's points per game average is greater than the current second captain,
-    # it sets him to be the second captain.
-    def set_second_captain(self, player):
-        if self.num_of_players_in_first_squad == 1:
-            self.second_captain = player
-        else:
-            if self.second_captain.get_points_per_game() < player.get_points_per_game():
-                self.second_captain = player
 
     # This method appends the given player to the relevant list, according to his position.
     def append(self, player, winners_position):
@@ -101,6 +91,7 @@ class UserFantasyTeam:
         else:
             self.forwards.append(player)
             self.num_of_players += 1
+        self.set_captains(player)
 
     # Returns a List[Player] containing 11 first squad players.
     def get_first_squad(self):
