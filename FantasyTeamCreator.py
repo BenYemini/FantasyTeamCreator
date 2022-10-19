@@ -7,7 +7,7 @@ from Team import *
 
 class FantasyTeamCreator:
 
-    def __init__(self, json_teams, json_players):
+    def __init__(self, json_teams, json_players, budget):
         self.teams = create_teams_obj(json_teams)
         self.players_pool = create_players_obj(json_players)
         self.players = {
@@ -17,10 +17,11 @@ class FantasyTeamCreator:
             "FWD": MaxHeap()
         }
         self.user_team = UserFantasyTeam()
+        self.user_team.set_budget(budget)
 
-    def create_team(self, budget):
+    def create_team(self):
         self.grade_giver()
-        self.pick_players_for_user_team(budget)
+        self.pick_players_for_user_team()
         return self.user_team
 
     # This method takes each player from the players_pool and sets his total grade, using methods from Player class.
@@ -34,29 +35,28 @@ class FantasyTeamCreator:
 
     # Recursive function, pick's the top graded player every time until the UserTeam is full.
     # This method considers a lot of FPL limitations, I highly recommend reading about those limitations in the ReadMe.
-    def pick_players_for_user_team(self, budget):
+    def pick_players_for_user_team(self):
         current_num_of_players_in_user_team = self.user_team.get_num_of_players()
         if current_num_of_players_in_user_team == TOTAL_NUM_OF_PLAYERS_IN_FINAL_TEAM:  # Recursion Stopping condition.
-            print("\n" + "The left budget is: " + "{:.1f}".format(budget))
             return
-        elif current_num_of_players_in_user_team < 2:   # Picking superstars - most points per game players.
+        elif current_num_of_players_in_user_team < 2:  # Picking superstars - most points per game players.
             if current_num_of_players_in_user_team == 0:
                 self.players_pool.sort(key=points_per_game_key_func)
             winner = self.players_pool.pop()
             self.players[winner.get_position()].delete_player(winner)
             if not winner.is_active():
-                self.pick_players_for_user_team(budget)
+                self.pick_players_for_user_team()
         else:
             winner = compare_players(self.players, self.user_team)
-        if legal_move(winner, self.user_team, budget, self.teams):  # Legal move according to FPL limitations.
+        if legal_move(winner, self.user_team, self.teams):  # According to FPL limitations.
             winners_position = winner.get_position()
             winners_team = winner.get_team()
             self.user_team.append(winner, winners_position)  # Add the player to the team.
             self.teams[winners_team].set_picked_player()  # Set the winner's team counter, notice the indexes.
-            budget -= winner.get_price()
-            self.pick_players_for_user_team(budget)
+            self.user_team.set_budget_after_player_purchase(winner.get_price())
+            self.pick_players_for_user_team()
         else:  # The move is illegal... the player will not be considered in the comparison anymore.
-            self.pick_players_for_user_team(budget)
+            self.pick_players_for_user_team()
 
 
 # This function creates Player object for each player in the json file and adds him to the players field.
@@ -77,11 +77,6 @@ def create_teams_obj(json_teams):
         team_obj = Team(team)
         teams.append(team_obj)
     return teams
-
-
-# Key function for the compare_players function. Sort by total grade.
-def total_grade_key_func(element):
-    return element.get_total_grade()
 
 
 # This function find and returns the top graded player.
@@ -119,8 +114,8 @@ def compare_players(players, user_team):
 
 
 # This function check's if adding the player to the UserTeam is a legal move - according to FPL limitations.
-def legal_move(winner, user_team, budget, teams):
-    return (budget_ratio_approval(winner, user_team, budget) and
+def legal_move(winner, user_team, teams):
+    return (budget_ratio_approval(winner, user_team) and
             positions_approval(winner, user_team) and picked_from_teams_approval(winner, teams))
 
 
@@ -156,8 +151,8 @@ def picked_from_teams_approval(winner, teams):
 # The rest will be for first-squad players, 6.5 M at least for each player.
 # The calculation for first squad players is: 2 * 12.0 + 1 * 10.0 + 3 * 8.0 + 2 * 7.0 + 3 * 5.6  = 100.0 - 15.0 = 85.0 =
 # 2 SuperStars, 1 Star, 3 Top players, 2 Above average, 3 Jokers.
-def budget_ratio_approval(winner, user_team, budget):
-    after_purchase_budget = budget - winner.get_price()  # The predicted budget.
+def budget_ratio_approval(winner, user_team):
+    after_purchase_budget = user_team.get_budget() - winner.get_price()  # The predicted budget.
     current_players_count = user_team.get_num_of_players()
     if current_players_count == TOTAL_NUM_OF_PLAYERS_IN_FINAL_TEAM - 1:  # Picking the last player to the UserTeam.
         return after_purchase_budget >= 0
@@ -167,7 +162,7 @@ def budget_ratio_approval(winner, user_team, budget):
             ratio = after_purchase_budget / after_purchase_players_to_go  # Budget for each future sub player.
             return ratio > MIN_AMOUNT_OF_BUDGET_FOR_EACH_SUB_PLAYER
         elif current_players_count == NUM_OF_FIRST_SQUAD_PLAYERS - 1:  # Choosing the last first-squad player.
-            return budget >= MIN_BUDGET_FOR_SUB_PLAYERS_SELECTION
+            return user_team.get_budget() >= MIN_BUDGET_FOR_SUB_PLAYERS_SELECTION
         else:  # Choosing first-squad player.
             ratio = (after_purchase_budget - MIN_BUDGET_FOR_SUB_PLAYERS_SELECTION) / \
                     (after_purchase_players_to_go - NUM_OF_SUB_PLAYERS)
@@ -190,3 +185,8 @@ def push_to_heap(self, player):
 
 def points_per_game_key_func(element):
     return element.get_points_per_game()
+
+
+# Key function for the compare_players function. Sort by total grade.
+def total_grade_key_func(element):
+    return element.get_total_grade()

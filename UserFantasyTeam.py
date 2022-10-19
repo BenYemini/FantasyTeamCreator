@@ -21,6 +21,17 @@ class UserFantasyTeam:
         }
         self.num_of_players_in_first_squad = 0
         self.sub_players = []
+        self.budget = float
+
+    # Set the team's budget to the budget given by the user.
+    def set_budget(self, budget):
+        self.budget = budget
+
+    def get_budget(self):
+        return self.budget
+
+    def set_budget_after_player_purchase(self, player_price):
+        self.budget -= player_price
 
     # Returns the current number of players in the team.
     def get_num_of_players(self):

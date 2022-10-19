@@ -9,6 +9,7 @@ class FantasyTeamRenderer(object):
         self.sub_players = user_team.get_sub_players()
         self.team_captain = user_team.get_first_captain()
         self.second_team_captain = user_team.get_second_captain()
+        self.remaining_budget = user_team.get_budget()
 
     def render_first_squad(self):
         print("\n" + "First squad:" + "\n")
@@ -39,3 +40,6 @@ class FantasyTeamRenderer(object):
         print()
         print("Second Team Captain:")
         self.second_team_captain.print()
+
+    def render_remaining_budget(self):
+        print("\n" + "The remaining budget is: " + "{:.1f}".format(self.remaining_budget))
