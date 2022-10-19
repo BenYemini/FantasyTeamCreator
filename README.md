@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- ⚽ **"Fantasy Team Creator" is a python Object-Oriented project that enables users to create a soccer fantasy team.**
+- ⚽ **"Fantasy Team Creator" is a Back-End Python Object-Oriented project that enables users to create a soccer fantasy team.**
 
 - 🥇 The players are chosen to the team according to the grades they receive from the grading system that
 I have developed (from my experience in fantasy and soccer).
@@ -65,14 +65,14 @@ else:
 ```
 budget = float(input("What is your budget?" + "\n"))
 ```
-3. Create FantasyTeamCreator object using data from the api about teams and players ('elements').
+3. Create FantasyTeamCreator object using data from the api about teams and players ('elements'), and the given budget.
 ```
-fantasy_team_creator = FantasyTeamCreator(data['teams'], data['elements'])
+fantasy_team_creator = FantasyTeamCreator(data['teams'], data['elements'], budget)
 ```
-4. Use the "create_team" method in order to assemble a team, according to the budget given.  
+4. Use the "create_team" method in order to assemble a team.
 This method will return UserFantasyTeam object containing the players chosen for the team.
 ```
-user_team = fantasy_team_creator.create_team(budget)
+user_team = fantasy_team_creator.create_team()
 ```
 5. Use the "set_first_squad" method to decide who will be at the first squad.
 ```
@@ -98,14 +98,16 @@ fantasy_team_renderer.render_subs()
 ```
 fantasy_team_renderer.render_captains()
 ```
+11. Use the "render_remaining_budget" method in order to print the remained budget.
+```
+fantasy_team_renderer.render_remaining_budget()
+```
 
 
 ## Using the application
 ````
 What is your budget?
 100
-
-The left budget is: 0.9
 
 First squad:
 
@@ -144,6 +146,8 @@ E.Haaland , total grade is: 11.96
 
 Second Team Captain:
 G.Martinelli Silva , total grade is: 13.19
+
+The remaining budget is: 0.9
 ````
 **We can see that the left budget is very small and our team is pretty good!!**.   
 (This team was built just before Game-Week 11 - and made 51 Round Points!).  
@@ -163,7 +167,6 @@ This is the main method of this class, in which:
 3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png)).
 4. Players are being picked to the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/FantasyTeamCreator.py#L37). 
 5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80).
-6. Prints the left budget
 
 **Return** - **UserFantasyTeam**
 
@@ -179,6 +182,7 @@ This class when initiated creates:
 * List[**Player**] - for sub players
 * **Player** - for Team Captain selection
 * **Player** - for Team Second Captain selection
+* float - for budget
 
 
 #### "set_first_squad"
@@ -196,6 +200,7 @@ This class when initiated creates:
 * List[**Player**] - for sub players
 * **Player** - for Team Captain
 * **Player** - for Second Team Captain
+* float - for UserTeam budget
 
 #### "render_first_squad"
 
