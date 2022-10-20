@@ -56,7 +56,6 @@ class FantasyTeamCreator:
             self.user_team.set_budget_after_player_purchase(winner.get_price())
             self.pick_players_for_user_team()
         else:  # The move is illegal... the player will not be considered in the comparison anymore.
-            winner.print()
             self.pick_players_for_user_team()
 
 
@@ -149,7 +148,7 @@ def picked_from_teams_approval(winner, teams):
 # This function check's if the budget will be enough for future players.
 # This function is a bit tricky and requires time to understand the logic and the numbers behind it.
 # In my opinion, we need to save 18.0 from budget to 4 sub players, that means - 4.5 M at least for each player.
-# The rest will be for first-squad players, 7.45 M at least for each player.
+# The rest will be for first-squad players.
 
 def budget_ratio_approval(winner, user_team):
     after_purchase_budget = user_team.get_budget() - winner.get_price()  # The predicted budget.
