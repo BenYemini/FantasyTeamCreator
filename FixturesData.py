@@ -36,7 +36,7 @@ class FixturesData:
         else:
             self.next_fixture_bonus -= AWAY_GAME_DEDUCTION
 
-        if self.next_fixture_opponnent_id == 6:  # Chelsea is a TOP STRENGTH team even though it's not in the api.
+        if self.next_fixture_opponent_id == 6:  # Chelsea is a TOP STRENGTH team even though it's not in the api.
             self.next_fixture_bonus -= TOP_STRENGTH_TEAM_BONUS
         elif self.next_fixture_opponent_strength == 5:
             self.next_fixture_bonus -= TOP_STRENGTH_TEAM_BONUS  # Pay attention to the minus!
