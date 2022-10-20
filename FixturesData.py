@@ -9,15 +9,11 @@ class FixturesData:
         self.next_fixture = json_fixtures_data['fixtures'][0]  # A data about next fixture.
         self.next_fixture_opponent_strength = json_fixtures_data['fixtures'][0]['difficulty']
         self.next_fixture_home = json_fixtures_data['fixtures'][0]['is_home']  # True if the next fixture is at home.
-        self.next_fixture_opponnent_id = json_fixtures_data['fixtures'][0]['id']
+        self.next_fixture_opponent_id = json_fixtures_data['fixtures'][0]['id']
         self.active = False  # If the player is considered active, then this field will be True.
         self.next_fixture_bonus = 0  # The next fixture bonus grade.
         self.set_next_fixture_bonus()
         self.set_activity()
-
-    # Returns True if the player is active, False otherwise.
-    def is_active(self):
-        return self.active
 
     # Sets the activity field.
     # If the player played at least a half of the game in each of the team's last 3 games, then his considered active.
@@ -28,6 +24,10 @@ class FixturesData:
                 activity_counter += 1
         if activity_counter == MIN_NUM_OF_GAMES_ACTIVE:
             self.active = True
+
+    # Returns True if the player is active, False otherwise.
+    def is_active(self):
+        return self.active
 
     # Calculates next fixture bonus, according to: home/away game and opponent strength.
     def set_next_fixture_bonus(self):

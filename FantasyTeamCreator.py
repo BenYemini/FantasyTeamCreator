@@ -39,7 +39,7 @@ class FantasyTeamCreator:
         current_num_of_players_in_user_team = self.user_team.get_num_of_players()
         if current_num_of_players_in_user_team == TOTAL_NUM_OF_PLAYERS_IN_FINAL_TEAM:  # Recursion Stopping condition.
             return
-        elif current_num_of_players_in_user_team < 2:  # Picking superstars - most points per game players.
+        elif current_num_of_players_in_user_team < 2:  # Picking superstars - most Points Per Game players.
             if current_num_of_players_in_user_team == 0:
                 self.players_pool.sort(key=points_per_game_key_func)
             winner = self.players_pool.pop()

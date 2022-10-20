@@ -29,10 +29,6 @@ class Player:
     def get_short_name(self):
         return self.first_name[0] + "." + self.last_name
 
-    # Returns players position.
-    def get_position(self):
-        return self.position
-
     def get_points_per_game(self):
         return self.points_per_game
 
@@ -48,6 +44,10 @@ class Player:
             self.position = "FWD"
         return
 
+    # Returns players position.
+    def get_position(self):
+        return self.position
+
     # Returns the player's price
     def get_price(self):
         return self.price
@@ -55,6 +55,10 @@ class Player:
     # Returns the player's team id.
     def get_team(self):
         return self.team
+
+    # Set the players total grade according to the calculation at the relevant get method.
+    def set_total_grade(self, grade):
+        self.total_grade = grade
 
     # Returns the player's total grade.
     def get_total_grade(self):
@@ -85,10 +89,6 @@ class Player:
                 self.set_player_active()
                 total_grade += player_fixtures_data.get_next_fixture_bonus()
         return total_grade
-
-    # Set the players total grade according to the calculation at the relevant get method.
-    def set_total_grade(self, grade):
-        self.total_grade = grade
 
     # Fetching an info from a different endpoint, referring to player's upcoming and previous fixtures performance.
     # Returns a FixturesData object.
@@ -127,11 +127,11 @@ class Player:
         if self.status != 'a':
             return False
 
-    def is_active(self):
-        return self.active
-
     def set_player_active(self):
         self.active = True
+
+    def is_active(self):
+        return self.active
 
     # Print's the players name and total grade.
     def print(self):
