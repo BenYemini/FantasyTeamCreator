@@ -142,9 +142,7 @@ class Player:
 # If the quality of the team is 4-5, then the probability for points is greater, therefore the player receives bonus
 # If the quality of the team is 1-2, then the probability for points is smaller.
 def team_strength_grade(team_info):
-    if team_info.get_name() == "Chelsea":  # Chelsea is a TOP STRENGTH team even though it's not in the api.
-        return TOP_STRENGTH_TEAM_BONUS
-    elif team_info.get_strength() == 5:
+    if team_info.get_strength() == 5:
         return TOP_STRENGTH_TEAM_BONUS
     elif team_info.get_strength() == 4:
         return GOOD_STRENGTH_TEAM_BONUS

@@ -3,12 +3,13 @@ class Team:
         self.id = team_info['id']  # Team's id in the premier league api
         self.name = team_info['name']  # Team's full name.
         self.short_name = team_info['short_name']  # Team's shortened name.
-        self.strength = int(team_info['strength'])  # In scale of 1-5 (1 - Worst, 5 - Best).
+        self.strength = 0
         self.strength_attack_home = team_info['strength_attack_home']  # Team's attack strength at home.
         self.strength_attack_away = team_info['strength_attack_away']  # Team's attack strength at away.
         self.strength_defence_home = team_info['strength_defence_home']  # Team's defense strength at home.
         self.strength_defence_away = team_info['strength_defence_away']  # Team's defense strength at away.
         self.picked = 0  # Counter for number of players picked to UserFantasyTeam, from this team.
+        self.set_strength(int(team_info['strength']))  # In scale of 1-5 (1 - Worst, 5 - Best).
 
     # Returns team name.
     def get_name(self):
@@ -17,6 +18,13 @@ class Team:
     # Returns team name shortened.
     def get_short_name(self):
         return self.short_name
+
+    # Sets the team's strength.
+    def set_strength(self, strength):
+        if self.get_name() in ["Chelsea", "Arsenal", "Spurs", "Newcastle"]:
+            self.strength = 5
+        else:
+            self.strength = strength
 
     # Returns the team strength.
     def get_strength(self):
