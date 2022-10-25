@@ -7,7 +7,6 @@ LAST_SUB = 4  # There are 4 subs, so the last one is number 4.
 MIN_DEFENDERS_IN_SQUAD = 3  # Min number of defenders in team squad.
 MIN_MIDFIELDERS_IN_SQUAD = 2  # Min number of midfielders in team squad.
 MIN_FORWARDS_IN_SQUAD = 1  # Min number of forwards in team squad.
-PLAYERS_LEFT_TO_FILL_SQUAD = 4  # Number of player to fill the squad (15 - (1 + 3 + 2 + 1) - 4 = 4)
 NUM_OF_SUB_PLAYERS = 4  # Number of sub players in the team.
 FIRST_PLACE = 0  # The player who holds the best total grade in the list.
 SECOND_PLACE = 1  # The player who holds the second-best total grade in the list.
@@ -32,7 +31,7 @@ MID_PENALTIES_BONUS = 1.5  # If a midfielder is the penalty taker in his team th
 FWD_PENALTIES_BONUS = 1.5  # If a forward is the penalty taker in his team then he receives this bonus.
 CORNERS_OR_FREEKICK_BONUS = 0.75  # If a player is the set piece taker he receives this bonus.
 SUBS_LEFT_TO_FILL = 3  # After the second goalkeeper was set as last sub, there's 3 subs left to fill
-SELECTED_BY_MAJORITY_BONUS = 1  # If the majority of fantasy players selected this player, he receives a bonus.
+SELECTED_BY_MAJORITY_BONUS = 1.5  # If the majority of fantasy players selected this player, he receives a bonus.
 MAX_NUM_OF_GOALKEEPERS_IN_TEAM = 2  # The maximum number of goalkeepers in the UserTeam.
 MAX_NUM_OF_DEFENDERS_IN_TEAM = 5  # The maximum number of defenders in the UserTeam.
 MAX_NUM_OF_MIDFIELDERS_IN_TEAM = 5  # The maximum number of midfielders in the UserTeam.

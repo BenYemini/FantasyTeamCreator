@@ -72,14 +72,11 @@ class Player:
     def get_player_grade(self, team_info):
         if not self.is_available:
             return 0
-
         total_grade = 0
-        total_grade += self.points_per_game / (self.price / 10)
-        if self.selected_by_percent / 100 > 0.5:
-            total_grade += SELECTED_BY_MAJORITY_BONUS
-        total_grade += self.penalties_corners_bonus()
+        total_grade += points_vs_price(self.price, self.points_per_game)
+        total_grade += selected_by_majority_bonus(self.selected_by_percent)
+        total_grade += penalties_corners_bonus(self.position, self.penalties_order, self.corners_freekicks_order)
         total_grade += team_strength_grade(team_info)
-
         if total_grade > MIN_TOTAL_GRADE_NEEDED_TO_PASS or (self.get_position() == "FWD" and
                                                             total_grade > MIN_TOTAL_GRADE_NEEDED_TO_PASS_FOR_FWD):
             player_fixtures_data = self.get_player_fixtures_data()
@@ -101,35 +98,16 @@ class Player:
         else:
             raise Exception("The HTTP request to element summary endpoint failed!")
 
-    def set_penalties_corners_grade(self, grade):
-        self.penalties_corners_grade = grade
-        return
-
-    # Returns players grade according to his role at penalties, corner kicks and free kicks.
-    # Notice that the bonus is different between players who play at different positions - fantasy logic
-    # (defenders and midfielders gets more points for goals)
-    def penalties_corners_bonus(self):
-        grade = 0
-        if self.penalties_order == 1:
-            if self.position == "DEF":  # Defense
-                grade += DEF_PENALTIES_BONUS
-            elif self.position == "MID":  # Midfield
-                grade += MID_PENALTIES_BONUS
-            else:  # Forward
-                grade += FWD_PENALTIES_BONUS
-        if self.corners_freekicks_order == 1:
-            grade += CORNERS_OR_FREEKICK_BONUS
-            self.set_penalties_corners_grade(grade)
-        return grade
-
     # Returns True if the player is available, False otherwise.
     def is_available(self):
         if self.status != 'a':
             return False
 
+    # Sets the player to be considered as an "active player".
     def set_player_active(self):
         self.active = True
 
+    # Returns True if the player is considered "active player".
     def is_active(self):
         return self.active
 
@@ -150,3 +128,31 @@ def team_strength_grade(team_info):
         return AVERAGE_STRENGTH_TEAM_BONUS
     else:
         return BAD_STRENGTH_TEAM_DEDUCTION
+
+
+# Calculates the ratio between player's price to his points per game average.
+def points_vs_price(points_per_game, price):
+    return points_per_game / price / 10
+
+
+# Returns a bonus if the majority of fantasy players picked this player to their squad.
+def selected_by_majority_bonus(selected_by_percent):
+    if selected_by_percent / 100 > 0.5:
+        return SELECTED_BY_MAJORITY_BONUS
+
+
+# Returns players grade according to his role at penalties, corner kicks and free kicks.
+# Notice that the bonus is different between players who play at different positions - fantasy logic
+# (defenders and midfielders gets more points for goals)
+def penalties_corners_bonus(position, penalties_order, corners_freekicks_order):
+    grade = 0
+    if penalties_order == 1:  # The player is the team's penalties taker.
+        if position in ["DEF", "GKP"]:  # Defense
+            grade += DEF_PENALTIES_BONUS
+        elif position == "MID":  # Midfield
+            grade += MID_PENALTIES_BONUS
+        else:  # Forward
+            grade += FWD_PENALTIES_BONUS
+    if corners_freekicks_order == 1:  # The player is the team's freekick and corners taker.
+        grade += CORNERS_OR_FREEKICK_BONUS
+    return grade

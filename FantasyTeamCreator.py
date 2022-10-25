@@ -19,6 +19,7 @@ class FantasyTeamCreator:
         self.user_team = UserFantasyTeam()
         self.user_team.set_budget(budget)
 
+    # explanation in ReadMe!
     def create_team(self):
         self.grade_giver()
         self.pick_players_for_user_team()
@@ -40,23 +41,34 @@ class FantasyTeamCreator:
         if current_num_of_players_in_user_team == TOTAL_NUM_OF_PLAYERS_IN_FINAL_TEAM:  # Recursion Stopping condition.
             return
         elif current_num_of_players_in_user_team < 2:  # Picking superstars - most Points Per Game players.
-            if current_num_of_players_in_user_team == 0:
-                self.players_pool.sort(key=points_per_game_key_func)
-            winner = self.players_pool.pop()
-            self.players[winner.get_position()].delete_player(winner)
-            if not winner.is_active():
-                self.pick_players_for_user_team()
+            winner = select_superstars(self.players_pool, self.players, self.user_team)
         else:
             winner = compare_players(self.players, self.user_team)
-        if legal_move(winner, self.user_team, self.teams):  # According to FPL limitations.
-            winners_position = winner.get_position()
-            winners_team = winner.get_team()
-            self.user_team.append(winner, winners_position)  # Add the player to the team.
-            self.teams[winners_team].set_picked_player()  # Set the winner's team counter, notice the indexes.
-            self.user_team.set_budget_after_player_purchase(winner.get_price())
+        if legal_move(winner, self.user_team, self.teams) and winner.is_active():  # According to FPL limitations.
+            self.purchase_player_to_team(winner)
             self.pick_players_for_user_team()
         else:  # The move is illegal... the player will not be considered in the comparison anymore.
             self.pick_players_for_user_team()
+
+    # Purchase the given player to the UserFantasyTeam including updating
+    # important fields: positions, picked teams, budget.
+    def purchase_player_to_team(self, winner):
+        winners_position = winner.get_position()
+        winners_team = winner.get_team()
+        self.user_team.append(winner, winners_position)  # Add the player to the team.
+        self.teams[winners_team].set_picked_player()  # Set the winner's team counter, notice the indexes.
+        self.user_team.set_budget_after_player_purchase(winner.get_price())
+
+
+# Returns a "superstar player".
+# "Superstar player" - first or second player picked to the team.
+# This sort of pick is made according to the points_per_game field.
+def select_superstars(players_pool, players, user_team):
+    if user_team.get_num_of_players() == 0:
+        players_pool.sort(key=points_per_game_key_func)  # Top points_per_game player is last.
+    winner = players_pool.pop()  # The player with the best points_per_game average.
+    players[winner.get_position()].delete_player(winner)
+    return winner
 
 
 # This function creates Player object for each player in the json file and adds him to the players field.
@@ -83,34 +95,15 @@ def create_teams_obj(json_teams):
 # The root holds a Player object that has the highest total grade among all players in his position.
 # We will compare all 4 top graded players in their position, and return the top graded of them.
 def compare_players(players, user_team):
-    goalkeepers_candidate = players['GKP'].peek()  # The goalkeeper with the highest grade.
-    defense_candidate = players['DEF'].peek()  # the defender with the highest grade.
-    midfield_candidate = players['MID'].peek()  # the midfielder with the highest grade.
-    forwards_candidate = players['FWD'].peek()  # the forward with the highest grade.
-    candidates = [goalkeepers_candidate, defense_candidate, midfield_candidate, forwards_candidate]
+    candidates = get_candidates_for_squad(players)  # List[Player], with top graded players from each position.
     candidates.sort(key=total_grade_key_func, reverse=True)  # Sorts the list (top grade first).
-    winners_position = candidates[FIRST_PLACE].get_position()  # Gets top graded player's position on the field.
-    # If the goalkeeper wins.
-    if winners_position == "GKP":
+    winner = candidates[FIRST_PLACE]  # Gets top graded player's position on the field.
+    if winner.get_position() == "GKP":
         if user_team.get_num_of_players() < NUM_OF_FIRST_SQUAD_PLAYERS and user_team.get_num_of_goalkeepers() != 0:
             # If we still pick the first squad players,and there's already a goalkeeper - no reason to have another one.
-            winners_position = candidates[SECOND_PLACE].get_position()  # Changing the winner to be the second place
-        else:
-            players['GKP'].delete_max()
-            return goalkeepers_candidate
-
-    # If the defender wins.
-    if winners_position == "DEF":
-        players['DEF'].delete_max()
-        return defense_candidate
-    # if the midfielder wins.
-    elif winners_position == "MID":
-        players['MID'].delete_max()
-        return midfield_candidate
-    # If the forward wins.
-    else:
-        players['FWD'].delete_max()
-        return forwards_candidate
+            winner = candidates[SECOND_PLACE]  # Changing the winner to be the second place
+        players[winner.get_position()].delete_max()
+        return winner
 
 
 # This function check's if adding the player to the UserTeam is a legal move - according to FPL limitations.
@@ -145,9 +138,9 @@ def picked_from_teams_approval(winner, teams):
     return True
 
 
-# This function check's if the budget will be enough for future players.
+# This function check's if the budget will be enough for future players, Returns True if so, and False otherwise.
 # This function is a bit tricky and requires time to understand the logic and the numbers behind it.
-# In my opinion, we need to save 18.0 from budget to 4 sub players, that means - 4.5 M at least for each player.
+# In my opinion, we need to save 18.0 from budget to 4 sub players.
 # The rest will be for first-squad players.
 
 def budget_ratio_approval(winner, user_team):
@@ -168,6 +161,16 @@ def budget_ratio_approval(winner, user_team):
             return ratio > MIN_AMOUNT_OF_BUDGET_FOR_EACH_FIRST_SQUAD_PLAYER
 
 
+# Returns a List[Player] containing the top graded players from each heap (position on the field).
+def get_candidates_for_squad(players):
+    goalkeepers_candidate = players['GKP'].peek()  # The goalkeeper with the highest grade.
+    defense_candidate = players['DEF'].peek()  # the defender with the highest grade.
+    midfield_candidate = players['MID'].peek()  # the midfielder with the highest grade.
+    forwards_candidate = players['FWD'].peek()  # the forward with the highest grade.
+    return [goalkeepers_candidate, defense_candidate, midfield_candidate, forwards_candidate]
+
+
+# Adds the given player to the relevant heap according to his position.
 def push_to_heap(self, player):
     if player.get_position() == "GKP":
         self.players['GKP'].push(player)
@@ -182,6 +185,7 @@ def push_to_heap(self, player):
         self.players['FWD'].push(player)
 
 
+# Key function for sorting Player objects according to points_per_game field.
 def points_per_game_key_func(element):
     return element.get_points_per_game()
 
