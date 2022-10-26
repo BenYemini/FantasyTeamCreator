@@ -283,5 +283,5 @@ This method is initiated when a FixturesData object is created.
 It sets the activity field, according to the definition of "active player" that was decided by me.  
 Of course, there can be several definitions to what is an "active player".
 
-**Thanks for reading this far!** 
+**Thanks for reading this far!**  
 **GO BUILD YOUR FANTASY TEAM NOW!**
