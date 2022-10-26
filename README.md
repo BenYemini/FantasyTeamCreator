@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- ⚽ **"Fantasy Team Creator" is a Back-End Python Object-Oriented project that enables users to create a soccer fantasy team.**
+- ⚽ **"Fantasy Team Creator" is a Back-End Python Object-Oriented project, written completely in python, that enables users to create a soccer fantasy team.**
 
 - 🥇 The players are chosen to the team according to the grades they receive from the grading system that
 I have developed (from my experience in fantasy and soccer).
@@ -150,7 +150,7 @@ G.Martinelli Silva , total grade is: 13.19
 The remaining budget is: 0.9
 ````
 **We can see that the left budget is very small and our team is pretty good!!**.   
-(This team was built just before Game-Week 11 - and made 51 Round Points!).  
+(This team was built just before Game-Week 11 - and made 60 Round Points).  
 ## Main Classes
 ### FantasyTeamCreator
 
@@ -188,11 +188,11 @@ This class when initiated creates:
 #### "set_first_squad"
 
 Pick's the 11 top graded players from the lists to be in the first squad -*under FPL limitations* - [Read more here](https://fantasy.premierleague.com/help/rules).  
-Call's the "set_captains" method, to set the team's first and second captain.
+Ensures that the first and second captains are in the first squad.
 
 #### "set_sub_players"
 
-places the sub players in the right sub number, according to their total grades.
+Places the sub players in the right sub number, according to their total grades.
 
 ### FantasyTeamRenderer
 This class when initiated creates:
@@ -233,14 +233,14 @@ The main method of this class, in which players are being graded according to se
 
 * **Team Strength** - player receives a bonus for the team he plays for.  
 
-* **Activity Check** - if the player had average of 45 minutes played in the last 3 games, then his considered to be active
+* **Activity Check** - if the player had average of 45 minutes played in the last 3 games, then his considered to be active.
 
 * **Next Fixture** - player receives a bonus for the next fixture according to: home/ away, opponent team strength.  
 
 *The points received for each of the parameters have been calculated for a long time, and relay on statistics and
 logic.*
 
-*Of course, you can play with the numbers at the constants file as you'll like and get different outcomes!*
+*Of course, you can play with the numbers at the constants file and get different outcomes!*
 
 *during the* Activity Check *and the Next Fixture methods a* **FixturesData**
 *object is created - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/3bae827df09aac0e6994ed399c181a722a9add8d/README.md?plain=1#L264)*
@@ -283,3 +283,5 @@ This method is initiated when a FixturesData object is created.
 It sets the activity field, according to the definition of "active player" that was decided by me.  
 Of course, there can be several definitions to what is an "active player".
 
+**Thanks for reading this far!** 
+**GO BUILD YOUR FANTASY TEAM NOW!**
