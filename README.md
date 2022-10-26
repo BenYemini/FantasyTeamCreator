@@ -284,4 +284,5 @@ It sets the activity field, according to the definition of "active player" that 
 Of course, there can be several definitions to what is an "active player".
 
 **Thanks for reading this far!**  
+
 **GO BUILD YOUR FANTASY TEAM NOW!**
