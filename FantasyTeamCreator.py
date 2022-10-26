@@ -96,14 +96,14 @@ def create_teams_obj(json_teams):
 # We will compare all 4 top graded players in their position, and return the top graded of them.
 def compare_players(players, user_team):
     candidates = get_candidates_for_squad(players)  # List[Player], with top graded players from each position.
-    candidates.sort(key=total_grade_key_func, reverse=True)  # Sorts the list (top grade first).
-    winner = candidates[FIRST_PLACE]  # Gets top graded player's position on the field.
+    candidates.sort(key=total_grade_key_func)  # Sorts the list.
+    winner = candidates.pop()  # Gets top graded player's position on the field.
     if winner.get_position() == "GKP":
         if user_team.get_num_of_players() < NUM_OF_FIRST_SQUAD_PLAYERS and user_team.get_num_of_goalkeepers() != 0:
             # If we still pick the first squad players,and there's already a goalkeeper - no reason to have another one.
-            winner = candidates[SECOND_PLACE]  # Changing the winner to be the second place
-        players[winner.get_position()].delete_max()
-        return winner
+            winner = candidates.pop()  # Changing the winner to be the second place
+    players[winner.get_position()].delete_max()
+    return winner
 
 
 # This function check's if adding the player to the UserTeam is a legal move - according to FPL limitations.

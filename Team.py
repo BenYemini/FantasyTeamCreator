@@ -1,3 +1,5 @@
+from constants import *
+
 class Team:
     def __init__(self, team_info):
         self.id = team_info['id']  # Team's id in the premier league api
@@ -21,7 +23,7 @@ class Team:
 
     # Sets the team's strength.
     def set_strength(self, strength):
-        if self.get_name() in ["Chelsea", "Arsenal", "Spurs", "Newcastle"]:
+        if self.get_name() in TOP_5_TEAMS_NAMES:
             self.strength = 5
         else:
             self.strength = strength

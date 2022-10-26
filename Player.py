@@ -73,7 +73,7 @@ class Player:
         if not self.is_available:
             return 0
         total_grade = 0
-        total_grade += points_vs_price(self.price, self.points_per_game)
+        total_grade += points_vs_price(self.points_per_game, self.price)
         total_grade += selected_by_majority_bonus(self.selected_by_percent)
         total_grade += penalties_corners_bonus(self.position, self.penalties_order, self.corners_freekicks_order)
         total_grade += team_strength_grade(team_info)
@@ -132,19 +132,21 @@ def team_strength_grade(team_info):
 
 # Calculates the ratio between player's price to his points per game average.
 def points_vs_price(points_per_game, price):
-    return points_per_game / price / 10
+    return points_per_game / (price / 10)
 
 
 # Returns a bonus if the majority of fantasy players picked this player to their squad.
 def selected_by_majority_bonus(selected_by_percent):
     if selected_by_percent / 100 > 0.5:
         return SELECTED_BY_MAJORITY_BONUS
+    else:
+        return 0
 
 
 # Returns players grade according to his role at penalties, corner kicks and free kicks.
 # Notice that the bonus is different between players who play at different positions - fantasy logic
 # (defenders and midfielders gets more points for goals)
-def penalties_corners_bonus(position, penalties_order, corners_freekicks_order):
+def penalties_corners_bonus(position, penalties_order, corners_freekick_order):
     grade = 0
     if penalties_order == 1:  # The player is the team's penalties taker.
         if position in ["DEF", "GKP"]:  # Defense
@@ -153,6 +155,6 @@ def penalties_corners_bonus(position, penalties_order, corners_freekicks_order):
             grade += MID_PENALTIES_BONUS
         else:  # Forward
             grade += FWD_PENALTIES_BONUS
-    if corners_freekicks_order == 1:  # The player is the team's freekick and corners taker.
+    if corners_freekick_order == 1:  # The player is the team's freekick and corners taker.
         grade += CORNERS_OR_FREEKICK_BONUS
     return grade

@@ -112,7 +112,6 @@ class UserFantasyTeam:
         self.first_squad_candidates.sort(key=total_grade_key_func)  # Sort the list in order to extract
         # the TOP players left to fill the squad. The others will be set as sub.
         self.set_first_squad_candidates_to_first_squad()
-        self.set_first_squad_candidates_to_subs()
 
     # Sets the goalkeepers to be either in the first squad or either in the subs list.
     # according to FPL Limitations (for minimum number of goalkeepers in the team).
@@ -154,12 +153,6 @@ class UserFantasyTeam:
             first_squad_player_position = first_squad_player.get_position()
             self.set_player_to_squad(first_squad_player, first_squad_player_position)
 
-    # Sets the left players to be in the subs list.
-    # Notice that each sub player will be added to a place in the sub list according to his total grade.
-    def set_first_squad_candidates_to_subs(self):
-        while len(self.first_squad_candidates) != 0:
-            self.set_player_to_subs(self.first_squad_candidates.pop())
-
     # Ensurers that the team's first captain will be in the first squad.
     # Checks if his in the first squad, and if not - appends him to the first squad and removes from candidates.
     def validate_first_captain_in_first_squad(self):
@@ -173,6 +166,12 @@ class UserFantasyTeam:
         if self.second_captain in self.first_squad_candidates:  # Second captain isn't in the first squad.
             self.set_player_to_squad(self.second_captain, self.second_captain_position)  # Add captain to squad.
             self.first_squad_candidates.remove(self.second_captain)  # Delete the captain from candidates list.
+
+    # Sets the left players to be in the subs list.
+    # Notice that each sub player will be added to a place in the sub list according to his total grade.
+    def set_sub_players(self):
+        while len(self.first_squad_candidates) != 0:
+            self.set_player_to_subs(self.first_squad_candidates.pop())
 
     # Returns a List[Player] containing 4 sub players.
     def get_sub_players(self):

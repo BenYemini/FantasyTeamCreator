@@ -36,7 +36,7 @@ class FixturesData:
         else:
             self.next_fixture_bonus -= AWAY_GAME_DEDUCTION
 
-        if self.next_fixture_opponent_id in [6]:  # Currently top strength teams.
+        if self.next_fixture_opponent_id in TOP_5_TEAMS_ID:  # Currently top strength teams.
             self.next_fixture_bonus -= TOP_STRENGTH_TEAM_BONUS
         elif self.next_fixture_opponent_strength == 5:
             self.next_fixture_bonus -= TOP_STRENGTH_TEAM_BONUS  # Pay attention to the minus!
