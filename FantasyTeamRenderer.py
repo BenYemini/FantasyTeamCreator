@@ -1,3 +1,5 @@
+from matplotlib import pyplot as plt
+import random
 from Player import *
 from constants import *
 from UserFantasyTeam import *
@@ -43,3 +45,37 @@ class FantasyTeamRenderer(object):
 
     def render_remaining_budget(self):
         print("\n" + "The remaining budget is: " + "{:.1f}".format(self.remaining_budget))
+
+    def render_graph_representation_first_squad(self):
+        total_grade_side = []
+        position_side = []
+
+        for player in self.first_squad['GKP']:
+            total_grade_side.append(player.get_total_grade())
+            position_side.append(random.random() + 1)
+        for player in self.first_squad['DEF']:
+            total_grade_side.append(player.get_total_grade())
+            position_side.append(random.random() + 2)
+        for player in self.first_squad['MID']:
+            total_grade_side.append(player.get_total_grade())
+            position_side.append(random.random() + 3)
+        for player in self.first_squad['FWD']:
+            total_grade_side.append(player.get_total_grade())
+            position_side.append(random.random() + 4)
+
+        plt.scatter(position_side, total_grade_side, label="total_grades", color="green",
+                    marker=".", s=40)
+
+        plt.xlabel('Total Grade side')
+        # frequency label
+        plt.ylabel('Position Side')
+        # plot title
+        plt.title('User Team - Total Grades divided to positions ')
+
+        # showing legend
+        plt.legend()
+        # function to show the plot
+        plt.show()
+
+
+
