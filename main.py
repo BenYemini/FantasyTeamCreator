@@ -19,3 +19,10 @@ fantasy_team_renderer.render_first_squad()
 fantasy_team_renderer.render_subs()
 fantasy_team_renderer.render_captains()
 fantasy_team_renderer.render_remaining_budget()
+user_decision = input("Would you like to render your First Squad total grades in a graph?").lower()
+if user_decision == "yes":
+    fantasy_team_renderer.render_graph_representation_first_squad()
+elif user_decision == "no":
+    pass
+else:
+    print("Yes or No answer please.")
