@@ -20,7 +20,7 @@ class FixturesData:
     def set_activity(self):
         activity_counter = 0
         for i in range(1, MIN_NUM_OF_GAMES_ACTIVE + 1):
-            if self.history_fixtures[self.number_of_games - i]['minutes'] >= ONE_HALF_TIME:
+            if self.history_fixtures[self.number_of_games - i]['minutes'] >= MIN_MINUTES_NEEDED_TO_PASS:
                 activity_counter += 1
         if activity_counter == MIN_NUM_OF_GAMES_ACTIVE:
             self.active = True
