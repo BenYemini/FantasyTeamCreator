@@ -1,5 +1,7 @@
 # Fantasy Team Creator - Premier league
 
+**Note: This ReadMe was written before GenAI entered our life! So read it!**
+
 ## Introduction
 
 - ⚽ **"Fantasy Team Creator" is a Back-End Python Object-Oriented project, written completely in python, that enables users to create a soccer fantasy team.**
