@@ -1,6 +1,6 @@
 # Fantasy Team Creator - Premier league
 
-**Note: This ReadMe was written before GenAI entered our life! So read it!**
+**Note: This .ReadMe file was written before GenAI entered our life! So read it!**
 
 ## Introduction
 
