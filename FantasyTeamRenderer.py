@@ -66,9 +66,9 @@ class FantasyTeamRenderer(object):
         plt.scatter(position_side, total_grade_side, label="total_grades", color="green",
                     marker=".", s=40)
 
-        plt.xlabel('Total Grade side')
+        plt.xlabel('Position Side')
         # frequency label
-        plt.ylabel('Position Side')
+        plt.ylabel('Total Grade side')
         # plot title
         plt.title('User Team - Total Grades divided to positions ')
 
