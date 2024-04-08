@@ -84,7 +84,7 @@ class Player:
                 return 0
             else:
                 self.set_player_active()
-                total_grade += player_fixtures_data.get_next_fixture_bonus()
+                # total_grade += player_fixtures_data.get_next_fixture_bonus()
         return total_grade
 
     # Fetching an info from a different endpoint, referring to player's upcoming and previous fixtures performance.
