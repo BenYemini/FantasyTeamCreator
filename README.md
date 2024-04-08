@@ -164,9 +164,10 @@ when initiated creates:
 This is the main method of this class, in which:  
 1. Each player receives a grade according to the grading system - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L28).
 2. Each player is inserted to a MaxHeap, according to his position - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/MaxHeap.py#L12).
-3. The roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png)).
-4. Players are being picked to the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/FantasyTeamCreator.py#L37). 
-5. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80).
+3.The first 3 players are being picked for the UserTeam according to the points per game field - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/d9788e985d5d3ff47f3d0317b83eebe1ab5f5bad/FantasyTeamCreator.py#L66).
+4. At the second stage, the roots of the MaxHeaps are being compared (Player objects) - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/1c2fd682d6496ced4da5358e02693c009ceb1372/FantasyTeamCreator.py#L83![image](https://user-images.githubusercontent.com/112508491/195096807-593bee21-4f71-4718-8e9b-5559f56c9128.png)).
+5. Players are being picked to the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/fe978bd5ac28dbdd8c683b3b5561d8e61de57385/FantasyTeamCreator.py#L37). 
+6. Players are being appended to the relevant list in the UserTeam - [Read more here](https://github.com/BenYemini/FantasyTeamCreator/blob/412e8e807e4242bf28c9ec1b7f3c8f60c10aa464/UserFantasyTeam.py#L80).
 
 **Return** - **UserFantasyTeam**
 
