@@ -1,3 +1,5 @@
 # created by virtualenv automatically
 *.pages
 /venv
+.idea/
+__pycache__/
